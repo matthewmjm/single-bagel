@@ -1,50 +1,83 @@
-// "https://bagel-api-fis.herokuapp.com/bagels/5577"
-// 5578
-// 5579
-// etc.
+document.addEventListener('DOMContentLoaded', () => {
+    console.log(document.getElementById('bagel-h1'))
+
+    const button = document.createElement('button') 
+    button.innerText = 'Load Bagels'
+    document.body.append(button)
+
+    button.addEventListener('click', (event)=> {
+        console.log('event', event)
+        // console.log('event', event.path)
+        // console.log('event', event.path[2])
+        // console.log('event', event.target)
+        // console.log('event', event.target.parentNode)
+        fetchBagles()
+    })
+
+    function fetchBagles() {
+        fetch(`https://bagel-api-fis.herokuapp.com/bagels`) 
+        .then(response => response.json())  
+        .then(bagels => renderBagels(bagels))
+    }
+
+    function renderBagels(bagels){ 
+        const bagelList = document.getElementById("bagel-list")  
+        bagels.map(bagel => {
+            const bagelLi = document.createElement('li')
+            bagelLi.innerText = bagel.type
+            bagelList.appendChild(bagelLi)
+    })
+    }
+})
 
 
-const searchParams = new URLSearchParams(window.location.search)
-const id = searchParams.get("bagel")
 
-fetch(`https://bagel-api-fis.herokuapp.com/bagels/${id}`) 
-    .then(response => response.json())  
-    .then(addBagelToPage)
 
-function addBagelToPage(bagel){ 
-    const bagel = document.getElementById("bagel")  
-    const p = document.createElement("p")
-    p.textContent = bagel.type  
-    bagel.append(p)
-}
+// document.addEventListener('DOMContentLoaded', () => {
+//     console.log(document.getElementById('bagel-h1'))
 
-//Kyle's
-// fetch("https://bagel-api-fis.herokuapp.com/bagels/5577") 
+//     const button = document.createElement('button') 
+//     button.innerText = 'Load Bagels'
+//     document.body.append(button)
+
+//     button.addEventListener('click', () => {
+//         fetch(`https://bagel-api-fis.herokuapp.com/bagels`) 
+//         .then(response => response.json())  
+//         .then(bagels => renderBagels(bagels))
+//     })
+
+//     function renderBagels(bagels){ 
+//         const bagelList = document.getElementById("bagel-list")  
+//         bagels.map(bagel => {
+//             const bagelLi = document.createElement('li')
+//             bagelLi.innerText = bagel.type
+//             bagelList.appendChild(bagelLi)
+//     })
+//     }
+// })
+
+// const button = document.createElement('button') 
+// button.innerText = 'Load dem Bagels'
+// document.body.append(button)
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     console.log(document.getElementById('bagel-h1'))
+//     fetch(`https://bagel-api-fis.herokuapp.com/bagels`) 
 //     .then(response => response.json())  
-//     .then(addBagelToPage)
-// function addBagelToPage(bagel){ 
-//     const $bagel = document.querySelector(".bagel")  
-//     const $p = document.createElement("p")
-//     $p.textContent = bagel.type  
-//     $bagel.append($p)
-// }
+//     .then(bagels => renderBagels(bagels))
 
-// Mine - not done and didn't know we were hardcoding bagel id
-// const searchParams = new URLSearchParams(window.location.search)
-// const id = searchParams.get("id")
+//     function renderBagels(bagels){ 
+//     const bagelList = document.getElementById("bagel-list")  
 
-// fetch(`http://localhost4000/bagels/${id}`)
-//     .then(response => response.json())
-//     .then(result => handleBagel(result))
+//     bagels.map(bagel => {
+//         const bagelLi = document.createElement('li')
+//         bagelLi.innerText = bagel.type
+//         bagelList.appendChild(bagelLi)
+//     })
+//     }
 
-// function handleBagel(info) {
-//     renderBagel(info.name)
-// }
+// })
 
-// const showBagel = document.getElementById("bagel")
-
-// function renderBagel(bagels) {
-//     bag
-// }
-
-
+// const button = document.createElement('button') 
+// button.innerText = 'Load dem Bagels'
+// document.body.append(button)
